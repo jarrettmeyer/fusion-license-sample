@@ -4,7 +4,12 @@ using System.Text;
 
 namespace LicenseSample
 {
-    public class License
+    public interface ILicense
+    {
+        bool IsValid { get; }
+    }
+
+    public class License : ILicense
     {
         public const string FILE_PATH = @"C:\temp\license.txt";
         public const string REGISTRY_PATH = @"SOFTWARE\Fusion Alliance\License Sample\Expiration";

@@ -22,6 +22,12 @@ namespace LicenseSample
         }
 
         [Test]
+        public void license_should_implement_interface()
+        {
+            typeof(ILicense).IsAssignableFrom(typeof(License)).Should().BeTrue();
+        }
+
+        [Test]
         public void can_create_new_instance_using_registry()
         {
             SetRegistryValue(twoDaysFromNow);

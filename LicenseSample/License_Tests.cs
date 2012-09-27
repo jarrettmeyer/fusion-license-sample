@@ -128,6 +128,7 @@ namespace LicenseSample
             {
                 var expirationAsBytes = Encoding.ASCII.GetBytes(value.ToString());
                 var base64 = Convert.ToBase64String(expirationAsBytes);
+                Debug.WriteLine("Writing file: " + base64);
 
                 var base64ByteArray = Encoding.ASCII.GetBytes(base64);
                 fileStream.Write(base64ByteArray, 0, base64ByteArray.Length);

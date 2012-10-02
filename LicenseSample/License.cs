@@ -21,6 +21,11 @@ namespace LicenseSample
             Initialize();
         }
 
+        /// <summary>
+        /// This accessor is the only real business rule in the application. If the
+        /// current date is less than the expiration date, then the license is valid
+        /// and should return true. Otherwise, throw an exception.
+        /// </summary>
         public bool IsValid
         {
             get

@@ -41,6 +41,12 @@ namespace LicenseSample
             get { return stub; }
         }
 
+        /// <summary>
+        /// This method is an example of a factory pattern. I would strongly encourage you to create
+        /// very explicit factory methods for building your objects. They greatly increase readability
+        /// and let you explictly return interfaces instead of the actual class the way a constructor
+        /// would.
+        /// </summary>
         public static IClock ForDateTime(DateTime dateTime)
         {
             return new StubClock(dateTime);

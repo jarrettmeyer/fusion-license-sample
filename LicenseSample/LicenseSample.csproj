@@ -50,6 +50,8 @@
   <ItemGroup>
     <Compile Include="Clock.cs" />
     <Compile Include="Clock_Tests.cs" />
+    <Compile Include="FileSystem.cs" />
+    <Compile Include="FileSystem_Tests.cs" />
     <Compile Include="License.cs" />
     <Compile Include="LicenseKeyException.cs" />
     <Compile Include="License_Tests.cs" />

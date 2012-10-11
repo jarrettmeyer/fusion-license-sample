@@ -162,8 +162,6 @@ namespace LicenseSample
             registrySettings = new Mock<IRegistrySettings>();
         }
 
-        
-
         [Test]
         public void license_should_implement_interface()
         {
@@ -226,7 +224,7 @@ namespace LicenseSample
             action.ShouldThrow<LicenseKeyException>();
         }
 
-        [Test, Ignore]
+        [Test]
         public void what_happens_now()
         {
             var counter = 0;
@@ -234,7 +232,9 @@ namespace LicenseSample
             {
                 try
                 {
-                    if (new License().IsValid)
+                    clock = StubClock.ForDateTime(2012, 10, 11, 11, 59, 59, 999);
+                    SetupRegistryToReturnDate(new DateTime(2012, 10, 11, 12, 0, 0));
+                    if (new BetterLicense(clock, registrySettings.Object, fileSystem.Object).IsValid)
                         counter += 1;
                 }
                 catch (Exception)

@@ -56,6 +56,8 @@
     <Compile Include="LicenseKeyException.cs" />
     <Compile Include="License_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistrySettings.cs" />
+    <Compile Include="RegistrySettings_Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

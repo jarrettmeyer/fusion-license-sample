@@ -26,7 +26,7 @@ namespace LicenseSample
         public void stubclock_can_be_stubbed_to_return_as_specific_time()
         {
             var stubTime = new DateTime(2012, 9, 27, 8, 15, 0);
-            var clock = StubClock.ForDateTime(stubTime);
+            var clock = StubClock.ForDateTime(2012, 9, 27, 8, 15, 0);
             clock.Now.Should().Be(stubTime);
         }
     }

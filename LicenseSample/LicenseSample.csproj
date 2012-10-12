@@ -48,16 +48,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clock.cs" />
+    <Compile Include="BetterLicense.cs" />
+    <Compile Include="BetterLicense_Tests.cs" />
+    <Compile Include="IFileSystem.cs" />
+    <Compile Include="LocalMachineRegistrySettings.cs" />
+    <Compile Include="StubClock.cs" />
     <Compile Include="Clock_Tests.cs" />
-    <Compile Include="FileSystem.cs" />
+    <Compile Include="DefaultFileSystem.cs" />
     <Compile Include="FileSystem_Tests.cs" />
+    <Compile Include="IClock.cs" />
     <Compile Include="License.cs" />
     <Compile Include="LicenseKeyException.cs" />
     <Compile Include="License_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegistrySettings.cs" />
+    <Compile Include="IRegistrySettings.cs" />
     <Compile Include="RegistrySettings_Tests.cs" />
+    <Compile Include="SystemClock.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,23 +1,21 @@
-﻿using System;
-using System.IO;
+using System;
 using System.Text;
 
 namespace LicenseSample
 {
-    public interface ILicense
+    public class BetterLicense : ILicense
     {
-        bool IsValid { get; }
-    }
-
-    public class License : ILicense
-    {
-        public const string FILE_PATH = @"C:\temp\license.txt";
-        public const string REGISTRY_PATH = @"SOFTWARE\Fusion Alliance\License Sample\Expiration";
-
+        private readonly IClock clock;
         private DateTime? expiration;
+        private readonly IFileSystem fileSystem;
+        private readonly IRegistrySettings registrySettings;
 
-        public License()
+        public BetterLicense(IClock clock, IRegistrySettings registrySettings, IFileSystem fileSystem)
         {
+            this.clock = clock;
+            this.registrySettings = registrySettings;
+            this.fileSystem = fileSystem;
+
             Initialize();
         }
 
@@ -30,7 +28,7 @@ namespace LicenseSample
         {
             get
             {
-                var isValid = DateTime.Now < expiration;
+                var isValid = clock.Now < expiration;
                 if (isValid)
                     return true;
 
@@ -40,14 +38,14 @@ namespace LicenseSample
 
         private void DeleteFile()
         {
-            File.Delete(FILE_PATH);
+            fileSystem.DeleteFile(License.FILE_PATH);
         }
 
         private void GetExpirationFromFileSystem()
         {
-            if (File.Exists(FILE_PATH))
+            if (fileSystem.DoesFileExist(License.FILE_PATH))
             {
-                var text = File.ReadAllText(FILE_PATH);
+                var text = fileSystem.ReadAllFileText(License.FILE_PATH);
                 var bytes = Convert.FromBase64String(text);
                 var expirationString = Encoding.ASCII.GetString(bytes);
                 expiration = DateTime.Parse(expirationString);
@@ -56,10 +54,10 @@ namespace LicenseSample
 
         private void GetExpirationFromRegistry()
         {
-            object value = Microsoft.Win32.Registry.LocalMachine.GetValue(REGISTRY_PATH);
+            string value = registrySettings.ReadKey(License.REGISTRY_PATH);
             if (value != null)
             {
-                expiration = DateTime.Parse(value.ToString());
+                expiration = DateTime.Parse(value);
             }
         }
 
@@ -84,7 +82,7 @@ namespace LicenseSample
 
         private void SetExpirationInRegistry()
         {
-            Microsoft.Win32.Registry.LocalMachine.SetValue(REGISTRY_PATH, expiration.ToString());
+            registrySettings.WriteKey(License.REGISTRY_PATH, expiration.ToString());
         }
     }
 }

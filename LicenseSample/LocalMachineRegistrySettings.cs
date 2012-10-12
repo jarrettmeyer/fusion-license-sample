@@ -1,16 +1,9 @@
-﻿using System;
+using System;
 using Microsoft.Win32;
 
 namespace LicenseSample
 {
-    public interface IRegistrySettings
-    {
-        bool HasKey(string path);
-        string ReadKey(string path);
-        void WriteKey(string path, string value);
-    }
-
-    public class RegistrySettings : IRegistrySettings
+    public class LocalMachineRegistrySettings : IRegistrySettings
     {
         public bool HasKey(string path)
         {

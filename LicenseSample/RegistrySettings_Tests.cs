@@ -12,7 +12,7 @@ namespace LicenseSample
         [SetUp]
         public void before_each_test()
         {
-            registrySettings = new RegistrySettings();
+            registrySettings = new LocalMachineRegistrySettings();
         }
 
         [TearDown]
